@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+}
+
+/* 输入框样式 */
+.input-section {
+  width: 90%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.input-section textarea {
+  width: 100%;
+  height: 150px; /* 默认高度 */
+  padding: 10px;
+  border: 2px solid #07c160; /* 边框颜色 */
+  border-radius: 8px; /* 圆角 */
+  font-size: 16px;
+  /* resize: vertical;  */
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+}
+
+/* 结果展示部分 */
+.result-section {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+}

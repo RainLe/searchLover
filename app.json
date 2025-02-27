@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/index/index",     
+    "pages/upload/upload"     
+  ],
+  "window": {
+    "navigationBarTitleText": "情侣可能性分析", 
+    "navigationBarBackgroundColor": "#ffffff", 
+    "navigationBarTextStyle": "black",         
+    "backgroundColor": "#f8f8f8",             
+    "backgroundTextStyle": "light"           
+  },
+  "networkTimeout": {
+    "request": 10000, 
+    "uploadFile": 20000 
+  },
+  "style": "v2", 
+  "sitemapLocation": "sitemap.json" 
+}

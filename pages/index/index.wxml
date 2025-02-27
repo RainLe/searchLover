@@ -1,0 +1,14 @@
+<view class="container">
+  <!-- 背景图片 -->
+  <image class="background-image" src="/images/love-background.jpg" mode="aspectFill"></image>
+
+  <!-- 欢迎文字 -->
+  <!-- <view class="welcome-text">
+    {{welcomeText}}
+  </view> -->
+
+  <!-- 开始分析按钮 -->
+  <button class="upload-button" bindtap="navigateToUpload">
+    心动分析
+  </button>
+</view>

@@ -1,0 +1,73 @@
+/* 容器样式 */
+.container {
+  /* position: relative; */
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 背景图片样式 */
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* 将背景图片置于底层 */
+}
+
+/* 欢迎文字样式 */
+.welcome-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 添加文字阴影 */
+  margin-bottom: 20px;
+  text-align: center;
+  z-index: 1; /* 将文字置于上层 */
+}
+
+/* 按钮样式 */
+.upload-button {
+  background-color: #fd778d; /* 粉色背景 */
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 10px;
+  border-radius: 25px; /* 圆角按钮 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 添加按钮阴影 */
+  z-index: 1; /* 将按钮置于上层 */
+  border: none;
+   width: auto;
+  animation: heartbeat 2s infinite; /* 添加心跳动画 */
+}
+
+
+/* 心跳动画 */
+@keyframes heartbeat {
+  0% {
+    transform: scale(1); /* 初始大小 */
+  }
+  25% {
+    transform: scale(1.1); /* 放大 */
+  }
+  50% {
+    transform: scale(1); /* 恢复 */
+  }
+  75% {
+    transform: scale(1.1); /* 放大 */
+  }
+  100% {
+    transform: scale(1); /* 恢复 */
+  }
+}
+
+/* 按钮点击效果 */
+.upload-button:active {
+  background-color: #e0435c; /* 点击时颜色变深 */
+  transform: scale(0.98); /* 点击时按钮缩小 */
+}

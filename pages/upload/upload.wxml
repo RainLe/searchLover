@@ -1,0 +1,31 @@
+<view class="container">
+
+  <view class="upload-section">
+    <button bindtap="chooseImage">上传聊天截图</button>
+    <image src="{{imagePath}}" mode="aspectFit" wx:if="{{imagePath}}"></image>
+  </view>
+
+  <!-- 输入对话内容部分 -->
+  <view class="input-section">
+    <textarea 
+      placeholder="请输入微信对话内容（例如：a:你好 b:你好呀）" 
+      bindinput="onInputDialog"
+      value="{{dialogContent}}"
+    ></textarea>
+  </view>
+
+    <!-- OCR 识别结果展示部分 -->
+    <!-- <view class="ocr-result-section" wx:if="{{ocrResult}}">
+    <text>OCR 识别结果：{{ocrResult}}</text>
+  </view> -->
+
+  <!-- 分析按钮 -->
+  <view class="button-section">
+    <button bindtap="analyzeDialog">分析对话</button>
+  </view>
+
+  <!-- 分析结果展示部分 -->
+  <view class="result-section" wx:if="{{result}}">
+    <text>分析结果：{{result}}</text>
+  </view>
+</view>
