@@ -41,7 +41,7 @@ Page({
         filePath: filePath,
         name: 'file',
         header: {
-          'apikey': 'K82866076288957'
+          'apikey': 'your-key'
         },
         formData: {
           language: 'chs', // 示例：传递 filetype 参数
@@ -110,7 +110,7 @@ Page({
       method: 'POST',
       timeout: 600000,
       header: {
-        'Authorization': 'Bearer sk-8516a2f3394a4dcdbe92e5fec02caa7e', // 替换为你的 API 密钥
+        'Authorization': 'Bearer your-key', // 替换为你的 API 密钥
         'Content-Type': 'application/json'
       },
       data: {
