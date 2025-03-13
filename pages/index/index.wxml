@@ -9,6 +9,6 @@
 
   <!-- 开始分析按钮 -->
   <button class="upload-button" bindtap="navigateToUpload">
-    心动分析
+    {{invaidToday?'查看放假信息':'心动分析'}}
   </button>
 </view>

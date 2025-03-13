@@ -1,4 +1,7 @@
 {
-  "navigationBarTitleText": "分析对话",
-  "enablePullDownRefresh": false
+  "navigationBarTitleText": "是否放假",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "towxml":"/towxml/towxml"
+  }
 }

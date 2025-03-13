@@ -4,7 +4,7 @@
     "pages/upload/upload"     
   ],
   "window": {
-    "navigationBarTitleText": "情侣可能性分析", 
+    "navigationBarTitleText": "查询是否放假", 
     "navigationBarBackgroundColor": "#ffffff", 
     "navigationBarTextStyle": "black",         
     "backgroundColor": "#f8f8f8",             

@@ -1,7 +1,8 @@
 // index.js
 Page({
   data: {
-    welcomeText: '欢迎使用情侣可能性分析小程序'
+    invaidToday: false,
+    welcomeText: '欢迎使用放假小程序',
   },
 
   // 跳转到上传页面

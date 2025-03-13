@@ -1,31 +1,68 @@
+<!-- upload.wxml -->
 <view class="container">
-
-  <view class="upload-section">
-    <button bindtap="chooseImage">上传聊天截图</button>
-    <image src="{{imagePath}}" mode="aspectFit" wx:if="{{imagePath}}"></image>
-  </view>
-
-  <!-- 输入对话内容部分 -->
-  <view class="input-section">
-    <textarea 
-      placeholder="请输入微信对话内容（例如：a:你好 b:你好呀）" 
-      bindinput="onInputDialog"
-      value="{{dialogContent}}"
-    ></textarea>
-  </view>
-
-    <!-- OCR 识别结果展示部分 -->
-    <!-- <view class="ocr-result-section" wx:if="{{ocrResult}}">
-    <text>OCR 识别结果：{{ocrResult}}</text>
+  <!-- <view class="nav">
+    <view class="nav-title">
+      <text class="title-text">恋爱概率测试</text>
+    </view>
   </view> -->
-
-  <!-- 分析按钮 -->
-  <view class="button-section">
-    <button bindtap="analyzeDialog">分析对话</button>
-  </view>
-
-  <!-- 分析结果展示部分 -->
-  <view class="result-section" wx:if="{{result}}">
-    <text>分析结果：{{result}}</text>
+  
+  <view class="main-content">
+    <!-- <view class="text-display"> -->
+      <!-- <view class="text-container"> -->
+        <!-- <textarea class="text-area" placeholder="图片文字将在此处显示..."  value="{{recognizedText}}"></textarea> -->
+      <!-- </view> -->
+    <!-- </view> -->
+    <view class="chat-container">
+        <!-- 用户消息 -->
+        <view class="chat-item">
+          <view class="chat-bubble">
+            <textarea class="word-area" placeholder="{{invaidToday?'请输入日期（例如：2022-01-01）':'输入聊天内容，a:你好 b:你好'}}" 
+            bindinput="onInputDialog" value="{{recognizedText}}"></textarea>
+          </view>
+          <view class="avatar-container">
+            <view class="avatar">
+              <text class="iconfont icon-robot"></text>
+            </view>
+          </view>
+      </view>
+      <!-- 第一条消息 -->
+      <view class="chat-item">
+        <view class="avatar-container">
+          <view class="avatar">
+            <text class="iconfont icon-robot"></text>
+          </view>
+        </view>
+        <view class="chat-bubble">
+          <towxml nodes="{{article}}"/>
+        </view>
+      </view>
+      
+      <!-- 第二条消息 -->
+      <!-- <view class="chat-item">
+        <view class="avatar-container">
+          <view class="avatar">
+            <text class="iconfont icon-robot"></text>
+          </view>
+        </view>
+        <view class="chat-bubble">
+          <view class="suggestion-content">
+            <text class="suggestion-title">建议：</text>
+            <view class="suggestion-item">1. 可以尝试更多线下互动的机会</view>
+            <view class="suggestion-item">2. 保持当前的交流频率和质量</view>
+            <view class="suggestion-item">3. 适时表达真诚的关心与喜欢</view>
+          </view>
+        </view>
+      </view> -->
+    </view>
+    
+    <view class="upload-section">
+      <button class="upload-button" bindtap="chooseImage"  wx:if="{{!invaidToday && (!recognizedText || endAnalysis)}}">上传微信聊天截图</button>
+    <image src="{{imagePath}}" mode="aspectFit" wx:if="{{imagePath}}" />
+    </view>
+    <button class="upload-button" bindtap="startAnalysis" 
+    wx:if="{{(recognizedText && !endAnalysis)}}">
+        <!-- <text class="iconfont icon-robot"></text> -->
+        <text>{{invaidToday?'查看是否放假':'开始分析'}}</text>
+      </button>
   </view>
 </view>

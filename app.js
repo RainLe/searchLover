@@ -1,5 +1,11 @@
 // app.js
 App({
+  towxml:require('/towxml/index'),
+  onLaunch() {
+    // 小程序初始化
+  }
+});
+App({
   onLaunch() {
     // 小程序初始化时执行
     console.log('小程序启动');
