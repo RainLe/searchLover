@@ -4,3 +4,4 @@
 本项目不存储任何聊天数据和截图，没有隐私风险
 ##### 3.欢迎体验
 ![image](https://github.com/user-attachments/assets/fe5fd533-cbd4-46a7-9d45-0b59c71fe977)
+如果发现货不对板，请等待到周末，有效的代码才会生效
