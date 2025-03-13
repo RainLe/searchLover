@@ -1,0 +1,7 @@
+[safe]
+	directory = /opt/homebrew
+[user]
+	name = lixiaoyu
+	email = 837369584@qq.com
+[core]
+	autocrlf = input

@@ -74,6 +74,7 @@ Page({
           });
           console.error('OCR 识别失败:', data);
         }
+<<<<<<< HEAD
       },
       fail(err) {
         wx.hideLoading();
@@ -83,6 +84,60 @@ Page({
         });
         console.error('OCR 请求失败:', err);
       }
+=======
+      });
+    },
+  
+    // 上传图片并调用 OCR 识别
+    uploadImage(filePath) {
+      const that = this;
+      wx.showLoading({
+        title: '识别中...',
+      });
+
+      wx.uploadFile({
+        url: 'https://api.ocr.space/parse/image',
+        filePath: filePath,
+        name: 'file',
+        header: {
+          'apikey': 'your-key'
+        },
+        formData: {
+          language: 'chs', // 示例：传递 filetype 参数
+        },
+        success(res) {
+          wx.hideLoading();
+          const data = JSON.parse(res.data);
+          if (data.OCRExitCode===1) {
+            // 更新 OCR 识别结果，并将其绑定到 dialogContent
+            that.setData({
+              ocrResult: data.ParsedResults[0].ParsedText,
+              dialogContent: data.ParsedResults[0].ParsedText // 将 OCR 结果更新到文本框中
+            });
+          } else {
+            wx.showToast({
+              title: '识别失败',
+              icon: 'none'
+            });
+            console.error('OCR 识别失败:', data);
+          }
+        },
+        fail(err) {
+          wx.hideLoading();
+          wx.showToast({
+            title: '请求失败，请重试',
+            icon: 'none'
+          });
+          console.error('OCR 请求失败:', err);
+        }
+      });
+    },
+
+  // 监听输入框内容变化
+  onInputDialog(e) {
+    this.setData({
+      dialogContent: e.detail.value
+>>>>>>> b1ceb06f212d407faed601f7c2c87a0dcc04121d
     });
   },
 
@@ -119,7 +174,11 @@ Page({
       method: 'POST',
       timeout: 600000,
       header: {
+<<<<<<< HEAD
         'Authorization': 'Bearer your-token', // 替换为你的 API 密钥
+=======
+        'Authorization': 'Bearer your-key', // 替换为你的 API 密钥
+>>>>>>> b1ceb06f212d407faed601f7c2c87a0dcc04121d
         'Content-Type': 'application/json'
       },
       data: {
@@ -172,5 +231,10 @@ Page({
         console.error('API 请求失败:', err);
       }
     });
+<<<<<<< HEAD
   },
 })
+=======
+  }
+});
+>>>>>>> b1ceb06f212d407faed601f7c2c87a0dcc04121d
