@@ -1,0 +1,56 @@
+<view class="chat-page" wx:if="{{record}}">
+  <scroll-view
+    class="message-scroll"
+    scroll-y
+    scroll-into-view="{{scrollIntoId}}"
+    scroll-with-animation
+  >
+    <view class="message-inner">
+      <view class="empty-hint" wx:if="{{!messages.length}}">
+        <text class="empty-title">接着这份分析继续问</text>
+        <text class="empty-sub">比如怎么回这句话，或 TA 的态度是什么意思</text>
+        <view class="quick-list">
+          <text
+            class="quick-chip"
+            wx:for="{{quickQuestions}}"
+            wx:key="*this"
+            data-question="{{item}}"
+            bindtap="tapQuick"
+          >{{item}}</text>
+        </view>
+      </view>
+
+      <view class="message {{item.role}}" wx:for="{{messages}}" wx:key="id">
+        <text class="message-text" wx:if="{{item.role === 'user' || !item.nodes}}">{{item.content}}</text>
+        <view class="message-markdown" wx:else>
+          <towxml nodes="{{item.nodes}}" />
+        </view>
+      </view>
+
+      <view class="typing" wx:if="{{isReplying}}">正在想…</view>
+
+      <view id="chat-bottom" class="chat-bottom"></view>
+    </view>
+  </scroll-view>
+
+  <view class="input-bar">
+    <input
+      class="input-field"
+      value="{{followUpText}}"
+      bindinput="onFollowUpInput"
+      bindconfirm="sendFollowUp"
+      confirm-type="send"
+      confirm-hold="{{true}}"
+      cursor-spacing="20"
+      placeholder="问点什么，或贴一句 TA 的话"
+      placeholder-class="input-placeholder"
+    />
+    <view class="send-btn {{followUpText && !isReplying ? '' : 'disabled'}}" bindtap="sendFollowUp">发送</view>
+  </view>
+</view>
+
+<view class="empty-page" wx:if="{{notFound}}">
+  <text class="empty-title">记录不见了</text>
+  <text class="empty-sub">可能已经被删除，回到首页重新分析吧。</text>
+  <view class="empty-btn" bindtap="goHome">回首页</view>
+</view>

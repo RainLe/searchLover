@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "继续追问",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "towxml": "/towxml/towxml"
+  }
+}

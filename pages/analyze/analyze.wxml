@@ -1,0 +1,117 @@
+<view class="page">
+  <view class="intro">
+    <text class="intro-title">把聊天交给我</text>
+    <text class="intro-sub">我只分析这段对话，不评判任何人</text>
+  </view>
+
+  <view class="mode-tabs">
+    <view class="mode-tab {{mode === 'text' ? 'on' : ''}}" data-mode="text" bindtap="switchMode">粘贴文本</view>
+    <view class="mode-tab {{mode === 'image' ? 'on' : ''}}" data-mode="image" bindtap="switchMode">上传截图</view>
+  </view>
+
+  <view class="card" wx:if="{{mode === 'image'}}">
+    <view class="upload-box" bindtap="chooseChatImages">
+      <text class="upload-icon">＋</text>
+      <text class="upload-title">{{imageList.length ? '继续添加截图' : '选择聊天截图'}}</text>
+      <text class="upload-sub">最多 {{maxImages}} 张 · 建议按聊天顺序上传</text>
+    </view>
+
+    <view class="image-grid" wx:if="{{imageList.length}}">
+      <view class="image-item" wx:for="{{imageList}}" wx:key="id">
+        <image
+          class="image-thumb"
+          src="{{item.path}}"
+          mode="aspectFill"
+          data-id="{{item.id}}"
+          bindtap="previewImage"
+        />
+        <view
+          class="image-mask"
+          wx:if="{{item.status !== 'done'}}"
+          data-id="{{item.id}}"
+          catchtap="retryImage"
+        >
+          <text class="image-mask-text">{{item.status === 'failed' ? '点击重试' : item.status === 'uploading' ? '识别中' : '等待中'}}</text>
+        </view>
+        <view class="image-badge" wx:if="{{item.status === 'done'}}">已识别</view>
+        <view class="image-delete" data-id="{{item.id}}" catchtap="removeImage">×</view>
+      </view>
+    </view>
+
+    <text class="ocr-progress" wx:if="{{isRecognizing}}">{{ocrProgress}}</text>
+    <text class="image-tip" wx:if="{{imageList.length}}">识别失败的截图可点击重试；删除截图会同时移除对应文字；同一张截图重复上传会直接复用识别结果</text>
+  </view>
+
+  <view class="card">
+    <view class="card-head" wx:if="{{mode === 'image'}}">
+      <text class="card-title">识别结果</text>
+      <text class="card-tip">可继续编辑</text>
+    </view>
+    <textarea
+      class="chat-input"
+      value="{{text}}"
+      bindinput="onInput"
+      maxlength="{{maxChars}}"
+      auto-height
+      show-confirm-bar="{{false}}"
+      placeholder="{{mode === 'image' ? '识别出的文字会出现在这里，也可以手动补充' : '粘贴聊天记录，格式不限，例如「我：在干嘛 / TA：刚下班」'}}"
+      placeholder-class="input-placeholder"
+    ></textarea>
+    <view class="input-footer">
+      <text class="counter">{{charCount}}/{{maxChars}}</text>
+      <text class="clear" wx:if="{{text}}" bindtap="clearText">清空</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-head">
+      <text class="section-title">关系阶段</text>
+      <text class="section-optional">可选，但会让判断更准</text>
+    </view>
+    <view class="chips">
+      <view
+        class="chip {{stage === item.label ? 'on' : ''}}"
+        wx:for="{{stages}}"
+        wx:key="value"
+        data-label="{{item.label}}"
+        bindtap="chooseStage"
+      >{{item.label}}</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="names-toggle" bindtap="toggleNames">
+      <text class="section-title">称呼</text>
+      <text class="names-action">{{showNames ? '收起' : (myName || taName ? myName + ' / ' + taName : '设置')}}</text>
+    </view>
+    <view class="names-row" wx:if="{{showNames}}">
+      <input class="name-input" placeholder="我" value="{{myName}}" bindinput="onMyName" maxlength="12" />
+      <text class="names-divider">/</text>
+      <input class="name-input" placeholder="TA" value="{{taName}}" bindinput="onTaName" maxlength="12" />
+    </view>
+  </view>
+
+  <view class="error-card" wx:if="{{errorMsg}}">
+    <text class="error-text">{{errorMsg}}</text>
+    <text class="retry" bindtap="startAnalysis">重试</text>
+  </view>
+
+  <view class="action-bar">
+    <view class="analyze-btn {{isAnalyzing || isRecognizing ? 'disabled' : ''}}" bindtap="startAnalysis">
+      {{isAnalyzing ? '分析中…' : isRecognizing ? '截图识别中…' : '开始分析'}}
+    </view>
+    <text class="notice">内容仅用于本次分析；结果保存在本机，可随时删除</text>
+  </view>
+
+  <view class="loading-mask" wx:if="{{isAnalyzing}}">
+    <view class="loading-card">
+      <text class="loading-title">正在读你们的聊天</text>
+      <loading-steps steps="{{loadingSteps}}" active="{{activeStep}}" hint="{{loadingHint}}" />
+      <text class="pii-note" wx:if="{{piiNote}}">{{piiNote}}</text>
+      <view class="loading-footer">
+        <text class="elapsed">{{elapsed}}s</text>
+        <text class="cancel" bindtap="cancelAnalysis">取消</text>
+      </view>
+    </view>
+  </view>
+</view>

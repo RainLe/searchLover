@@ -1,0 +1,152 @@
+page {
+  background: #FBF7F5;
+  height: 100%;
+}
+
+.chat-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-scroll {
+  flex: 1;
+  min-height: 0;
+}
+
+.message-inner {
+  padding: 20px 16px 24px;
+}
+
+.empty-hint {
+  padding: 48px 8px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty-hint .empty-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #3A3A3A;
+}
+
+.empty-hint .empty-sub {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #9A9A9A;
+  text-align: center;
+}
+
+
+.message {
+  max-width: 88%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.message.user {
+  margin-left: auto;
+  background: #FFE8F0;
+  color: #6A3E4F;
+  border-bottom-right-radius: 4px;
+}
+
+.message.assistant {
+  margin-right: auto;
+  background: #FFFFFF;
+  color: #3A3A3A;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 4px 14px rgba(180, 120, 140, 0.06);
+}
+
+.message-markdown {
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.typing {
+  font-size: 12px;
+  color: #B5B5B5;
+  margin-bottom: 10px;
+}
+
+.chat-bottom {
+  height: 1px;
+}
+
+.input-bar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+  background: #FFFFFF;
+  border-top: 1px solid #F3ECEE;
+}
+
+.input-field {
+  flex: 1;
+  height: 40px;
+  font-size: 13px;
+  color: #3A3A3A;
+  background: #F8F4F5;
+  border-radius: 12px;
+  padding: 0 14px;
+}
+
+.input-placeholder {
+  color: #BEB3B6;
+  font-size: 12px;
+}
+
+.send-btn {
+  flex-shrink: 0;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #F47BA5, #E85A8C);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.send-btn.disabled {
+  opacity: 0.4;
+}
+
+.empty-page {
+  min-height: 100vh;
+  padding: 120px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty-page .empty-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #3A3A3A;
+}
+
+.empty-page .empty-sub {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #9A9A9A;
+}
+
+.empty-btn {
+  margin-top: 28px;
+  padding: 12px 36px;
+  border-radius: 24px;
+  background: #E85A8C;
+  color: #FFFFFF;
+  font-size: 14px;
+}

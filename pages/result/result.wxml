@@ -1,0 +1,119 @@
+<view class="page" wx:if="{{record && result}}">
+  <view class="hero-card">
+    <view class="hero-top">
+      <text class="date">{{createdAtText}}</text>
+      <text class="stage" wx:if="{{record.stage}}">{{record.stage}}</text>
+    </view>
+
+    <block wx:if="{{!safetyFlagged}}">
+      <view class="ring-wrap">
+        <score-ring score="{{result.score}}" level="{{result.level}}" color="{{result.levelColor}}" size="{{220}}" />
+      </view>
+      <text class="summary">{{result.summary}}</text>
+      <view class="meta-row">
+        <text class="meta-chip">置信度 {{result.confidence === 'high' ? '高' : result.confidence === 'medium' ? '中' : '低'}}</text>
+        <text class="meta-chip" wx:if="{{record.sourceChars}}">基于 {{record.sourceChars}} 字聊天{{record.truncated ? '（首尾）' : ''}}</text>
+      </view>
+    </block>
+
+    <view class="safety" wx:else>
+      <text class="safety-title">先照顾好自己</text>
+      <text class="safety-text">{{result.safety.message}}</text>
+    </view>
+  </view>
+
+  <block wx:if="{{!safetyFlagged}}">
+    <view class="section-card" wx:if="{{result.dimensions.length}}">
+      <text class="section-title">{{dimensionTitle}}</text>
+      <text class="section-sub" wx:if="{{dimensionSub}}">{{dimensionSub}}</text>
+      <view class="stage-focus" wx:if="{{stageFocus}}">
+        <text class="stage-focus-label">本阶段重点</text>
+        <text class="stage-focus-text">{{stageFocus}}</text>
+      </view>
+      <view class="dimension-list">
+        <dimension-bar
+          wx:for="{{result.dimensions}}"
+          wx:key="key"
+          dimension="{{item}}"
+        />
+      </view>
+    </view>
+
+    <view class="section-card" wx:if="{{result.signals.length}}">
+      <view class="section-head">
+        <text class="section-title">TA 的信号</text>
+        <view class="filters">
+          <text class="filter {{signalFilter === 'all' ? 'on' : ''}}" data-filter="all" bindtap="changeFilter">全部</text>
+          <text class="filter {{signalFilter === 'positive' ? 'on' : ''}}" data-filter="positive" bindtap="changeFilter">积极</text>
+          <text class="filter {{signalFilter === 'risk' ? 'on' : ''}}" data-filter="risk" bindtap="changeFilter">风险</text>
+        </view>
+      </view>
+      <signal-card wx:for="{{signalList}}" wx:key="quote" signal="{{item}}" />
+      <text class="empty" wx:if="{{!signalList.length}}">这个分类下暂时没有信号</text>
+    </view>
+
+    <view class="section-card" wx:if="{{result.nextSteps.length}}">
+      <text class="section-title">下一步怎么做</text>
+      <view class="step-item" wx:for="{{result.nextSteps}}" wx:key="title">
+        <text class="step-index">{{index + 1}}</text>
+        <view class="step-body">
+          <view class="step-title-row">
+            <text class="step-title">{{item.title}}</text>
+            <text class="step-principle" wx:if="{{item.principleLabel}}">{{item.principleLabel}}</text>
+          </view>
+          <text class="step-detail">{{item.detail}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="section-card" wx:if="{{result.replies.length}}">
+      <text class="section-title">帮你回一句</text>
+      <text class="section-sub">三选一，直接复制就能用</text>
+      <reply-card wx:for="{{result.replies}}" wx:key="tone" reply="{{item}}" />
+    </view>
+
+    <view class="section-card" wx:if="{{result.principles.length}}">
+      <text class="section-title">书里怎么说</text>
+      <text class="section-sub">来自《如何让你爱的人爱上你》的心动原理</text>
+      <view class="principle" wx:for="{{result.principles}}" wx:key="id">
+        <view class="principle-head">
+          <text class="principle-index">{{index + 1}}</text>
+          <text class="principle-name">{{item.name}}</text>
+        </view>
+        <text class="principle-quote">{{item.quote}}</text>
+        <text class="principle-apply">{{item.apply}}</text>
+      </view>
+    </view>
+
+    <view class="section-card followup-entry">
+      <text class="section-title">还有想问的？</text>
+      <text class="section-sub">基于这段聊天继续追问，回答会更贴合</text>
+      <view class="followup-entry-btn" bindtap="startFollowUp">继续追问</view>
+    </view>
+  </block>
+
+  <view class="feedback" wx:if="{{!safetyFlagged}}">
+    <text class="feedback-label">这条分析准吗？</text>
+    <view class="feedback-actions">
+      <text class="feedback-btn {{feedback === 'up' ? 'on' : ''}}" data-value="up" bindtap="submitFeedback">准</text>
+      <text class="feedback-btn {{feedback === 'down' ? 'on' : ''}}" data-value="down" bindtap="submitFeedback">不太准</text>
+    </view>
+  </view>
+
+  <view class="actions">
+    <view class="action-btn" bindtap="savePoster">保存海报</view>
+    <button class="action-btn share-btn" open-type="share">分享</button>
+    <view class="action-btn" bindtap="retest">再测一次</view>
+  </view>
+
+  <text class="disclaimer">{{result.disclaimer}}</text>
+  <text class="delete-link" bindtap="deleteRecord">删除这条记录</text>
+
+  <canvas type="2d" id="posterCanvas" class="poster-canvas"></canvas>
+</view>
+
+<view class="empty-page" wx:if="{{notFound}}">
+  <text class="empty-title">记录不见了</text>
+  <text class="empty-sub">可能已经被删除，回到首页重新分析吧。</text>
+  <view class="empty-btn" bindtap="goHome">回首页</view>
+</view>

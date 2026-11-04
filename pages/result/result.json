@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "心动报告",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "score-ring": "/components/score-ring/score-ring",
+    "dimension-bar": "/components/dimension-bar/dimension-bar",
+    "signal-card": "/components/signal-card/signal-card",
+    "reply-card": "/components/reply-card/reply-card"
+  }
+}

@@ -1,14 +1,32 @@
-<view class="container">
-  <!-- 背景图片 -->
-  <image class="background-image" src="/images/love-background.jpg" mode="aspectFill"></image>
+<view class="page">
+  <image class="bg-photo" src="/images/love-background.jpg" mode="aspectFill"></image>
 
-  <!-- 欢迎文字 -->
-  <!-- <view class="welcome-text">
-    {{welcomeText}}
-  </view> -->
+  <view class="hero">
+    <text class="title">读懂聊天里的<text class="title-strong">心动信号</text></text>
 
-  <!-- 开始分析按钮 -->
-  <button class="upload-button" bindtap="navigateToUpload">
-    {{invaidToday?'查看放假信息':'心动分析'}}
-  </button>
+    <view class="quote" wx:if="{{quote}}">
+      <text class="quote-text">“{{quote.text}}”</text>
+      <text class="quote-source">——{{quote.source}}</text>
+    </view>
+  </view>
+
+  <view class="actions">
+    <view class="primary" bindtap="startAnalysis">
+      <text class="primary-label">心动分析</text>
+      <view class="ecg"></view>
+    </view>
+    <view class="secondary" bindtap="openExample">没有聊天记录？看一个示例 →</view>
+  </view>
+  
+  <view class="footer">
+    <view class="latest" wx:if="{{hasHistory}}" bindtap="openHistory">
+      <view class="latest-main">
+        <text class="latest-label">上次分析</text>
+        <text class="latest-score">{{latestScore}}</text>
+        <text class="latest-level">{{latestLevel}}</text>
+      </view>
+      <text class="latest-date">{{latestDate}} · 查看记录 →</text>
+    </view>
+    <view class="privacy-link" bindtap="openPrivacy">数据只留在这台手机 · 隐私说明</view>
+  </view>
 </view>

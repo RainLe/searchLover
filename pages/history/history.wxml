@@ -1,0 +1,31 @@
+<view class="page">
+  <view class="head">
+    <text class="title">心动记录</text>
+    <text class="sub">只保存在这台手机 · 最多 20 条</text>
+  </view>
+
+  <view class="list" wx:if="{{records.length}}">
+    <view class="record" wx:for="{{records}}" wx:key="id" data-id="{{item.id}}" bindtap="openRecord">
+      <view class="record-score">
+        <text class="score">{{item.scoreText}}</text>
+        <text class="delta {{item.deltaClass}}" wx:if="{{item.deltaText}}">{{item.deltaText}}</text>
+      </view>
+      <view class="record-body">
+        <view class="record-top">
+          <text class="level">{{item.level}}</text>
+          <text class="date">{{item.dateText}}</text>
+        </view>
+        <text class="summary">{{item.summary}}</text>
+      </view>
+      <view class="record-delete" data-id="{{item.id}}" catchtap="removeRecord">×</view>
+    </view>
+  </view>
+
+  <view class="empty" wx:else>
+    <text class="empty-title">还没有记录</text>
+    <text class="empty-sub">完成第一次分析后，结果会出现在这里。</text>
+    <view class="empty-btn" bindtap="goHome">去分析</view>
+  </view>
+
+  <view class="clear-all" wx:if="{{records.length}}" bindtap="clearAll">清空全部记录</view>
+</view>

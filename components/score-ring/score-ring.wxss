@@ -1,0 +1,48 @@
+.score-ring {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.ring-center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-line {
+  display: flex;
+  align-items: baseline;
+}
+
+.ring-score {
+  font-size: 52px;
+  font-weight: 700;
+  color: #2B2B2B;
+  line-height: 1;
+}
+
+.ring-unit {
+  font-size: 18px;
+  color: #FF69B4;
+  margin-left: 2px;
+}
+
+.ring-level {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #8A8A8A;
+  letter-spacing: 1px;
+}

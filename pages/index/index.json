@@ -1,4 +1,5 @@
 {
-  "navigationBarTitleText": "首页",
-  "enablePullDownRefresh": false
+  "navigationBarTitleText": "心动分析",
+  "enablePullDownRefresh": false,
+  "usingComponents": {}
 }

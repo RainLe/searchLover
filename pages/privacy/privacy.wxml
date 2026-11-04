@@ -1,0 +1,37 @@
+<view class="page">
+  <text class="title">数据是怎么处理的</text>
+  <text class="sub">简单说：截图不留，原文不长期存，结果只在你手机上。</text>
+
+  <view class="card">
+    <text class="card-title">我们会处理什么</text>
+    <text class="item">· 你粘贴的聊天文本，或上传的聊天截图。</text>
+    <text class="item">· 截图会发送到 OCR 服务识别成文字，识别后不在本地保存图片。</text>
+    <text class="item">· 识别出的文字会在本机缓存 7 天，同一张截图再次上传时直接复用。</text>
+    <text class="item">· 文字在提交前会自动隐藏手机号、身份证、银行卡、邮箱。</text>
+    <text class="item">· 脱敏后的文字会发送给 DeepSeek，用于生成分析结果。</text>
+  </view>
+
+  <view class="card">
+    <text class="card-title">我们不做什么</text>
+    <text class="item">· 不保存聊天截图。</text>
+    <text class="item">· 不长期保存完整聊天原文；本地只保留 60 字以内的摘要、分析结果，以及截图识别文字的短期缓存。</text>
+    <text class="item">· 不建立账号画像；第三方服务的数据处理以其隐私政策为准。</text>
+  </view>
+
+  <view class="card">
+    <text class="card-title">第三方服务</text>
+    <text class="item">· OCR：ocr.space，用于截图文字识别。</text>
+    <text class="item">· 分析：DeepSeek，用于生成关系分析与回复建议。</text>
+    <text class="item">· 请不要提交身份证号、银行卡号、密码等敏感信息。</text>
+  </view>
+
+  <view class="card">
+    <text class="card-title">你的控制权</text>
+    <text class="item">· 分析记录保存在本机微信 Storage 中，最多 20 条。</text>
+    <text class="item">· 可以随时删除单条记录，或一次清除全部数据（含截图识别缓存）。</text>
+    <text class="item">· 当前记录数：{{count}} 条。</text>
+    <view class="clear-btn" bindtap="clearAll">清除全部本地数据</view>
+  </view>
+
+  <text class="footnote">本产品目前为自用 / 演示版本。正式上线前会补充小程序隐私保护指引、用户协议与内容安全机制。</text>
+</view>

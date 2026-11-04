@@ -1,0 +1,7 @@
+<view class="reply-card">
+  <view class="reply-head">
+    <text class="reply-tone">{{reply.tone}}</text>
+    <text class="reply-copy" bindtap="copyText">复制</text>
+  </view>
+  <text class="reply-text">{{reply.text}}</text>
+</view>

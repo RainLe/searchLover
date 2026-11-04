@@ -1,0 +1,79 @@
+.signal-card {
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #FFFDFE;
+  border-left: 4px solid #D8D8D8;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(43, 43, 43, 0.04);
+}
+
+.signal-positive {
+  border-left-color: #FF69B4;
+}
+
+.signal-risk {
+  border-left-color: #E8835A;
+}
+
+.signal-neutral {
+  border-left-color: #B9C0CC;
+}
+
+.signal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.signal-tags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.signal-tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #FDEFF4;
+  color: #D94C8C;
+}
+
+.signal-factor {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: #F5F2F8;
+  color: #8A7A95;
+}
+
+.signal-risk .signal-tag {
+  background: #FDF0EA;
+  color: #C96A42;
+}
+
+.signal-neutral .signal-tag {
+  background: #F0F2F5;
+  color: #6E7787;
+}
+
+.copy-hint {
+  font-size: 10px;
+  color: #B5B5B5;
+}
+
+.signal-quote {
+  display: block;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #2B2B2B;
+  margin-bottom: 6px;
+}
+
+.signal-explain {
+  display: block;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #8A8A8A;
+}

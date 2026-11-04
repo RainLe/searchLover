@@ -1,0 +1,11 @@
+<view class="signal-card signal-{{signal.type}}">
+  <view class="signal-head">
+    <view class="signal-tags">
+      <text class="signal-tag">{{signal.type === 'positive' ? '积极信号' : signal.type === 'risk' ? '风险信号' : '中性信号'}}</text>
+      <text class="signal-factor" wx:if="{{signal.factorLabel}}">{{signal.factorLabel}}</text>
+    </view>
+    <text class="copy-hint" wx:if="{{signal.quote}}" bindtap="copyQuote">点按复制原话</text>
+  </view>
+  <text class="signal-quote" wx:if="{{signal.quote}}" bindtap="copyQuote">“{{signal.quote}}”</text>
+  <text class="signal-explain">{{signal.explain}}</text>
+</view>

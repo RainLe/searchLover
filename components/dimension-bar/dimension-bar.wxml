@@ -1,0 +1,13 @@
+<view class="dimension">
+  <view class="dimension-head">
+    <view class="dimension-label-wrap">
+      <text class="dimension-label">{{dimension.label}}</text>
+      <text class="dimension-weight" wx:if="{{dimension.weight}}">{{dimension.weight}}%</text>
+    </view>
+    <text class="dimension-score">{{dimension.score}}</text>
+  </view>
+  <view class="dimension-track">
+    <view class="dimension-fill" style="width:{{dimension.score}}%"></view>
+  </view>
+  <text class="dimension-reason" wx:if="{{dimension.reason}}">{{dimension.reason}}</text>
+</view>
