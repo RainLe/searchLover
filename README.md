@@ -14,25 +14,6 @@
 
 框架只用于理解真实信号和改善真诚沟通，不提供操控、假装、试探、跟踪、骚扰或 PUA 话术；性技巧与性别刻板印象不在分析范围内。
 
-## 目录结构
-
-```
-pages/index       首页
-pages/analyze     输入页（文本 / 截图 OCR）
-pages/result      结果页（分数、信号、建议、回复、追问入口）
-pages/followup    追问对话页（多轮问答）
-pages/history     本地记录
-pages/privacy     隐私说明
-components        分数环、维度条、信号卡、回复卡、加载步骤
-services          AI 调用、OCR、结果规范化
-utils             文本、脱敏、存储、埋点
-config            常量与本地密钥
-data              示例对话、书中心动框架与原理库
-tests             纯函数测试
-towxml            追问回答的 Markdown 渲染
-books             本地参考资料（不参与小程序打包）
-```
-
 ## 本地运行
 
 1. 用微信开发者工具打开项目根目录。
@@ -41,6 +22,11 @@ books             本地参考资料（不参与小程序打包）
 4. 运行测试：`npm test`。
 
 `config/secrets.local.js` 已被 `.gitignore` 忽略，请勿提交。密钥会随小程序包一起下发，只适合自用/演示；正式上线必须改为云函数或服务端中转。若某个密钥曾经进入公开仓库的历史记录，请立即在服务商后台作废并重新生成。
+
+
+## 微信小程序码
+
+![心动分析小程序码](images/image.png)
 
 ## 已知限制
 
